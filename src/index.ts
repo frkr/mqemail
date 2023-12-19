@@ -14,6 +14,16 @@ export default {
     },
     async email(message: ForwardableEmailMessage, env: Env, ctx: any) {
 
+        await message.forward(persona);
+
+        try {
+            // if (message.to === noreply) {
+            message.setReject(`550 5.1.1 Mailbox does not exist. https://ideias.casa/ `);
+            return;
+            // }
+        } catch (e) {
+        }
+
         const data = 'Olá,\n\n' +
                 'Você tentou entrar em contato com um e-mail que não existe.\n\n'
             // `Por favor, entre em contato com o e-mail ${persona} para maiores informações.\n\n`
@@ -58,8 +68,6 @@ export default {
 
         //@ts-ignore
         await message.reply(reply);
-
-        await message.forward(persona);
 
         // TODO enviar isto para o modulo de email
 
