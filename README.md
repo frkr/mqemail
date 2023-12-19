@@ -1,4 +1,4 @@
-# Exemplo de raiz de barramento
+# Broker de recebimento e envio de e-mails
 
 - Criar um projeto com o template do cloudflare
 ```shell
